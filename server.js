@@ -13,11 +13,14 @@ let db;
 let bookingsCollection;
 
 async function connectDB() {
+console.log('🔍 Checking for MONGODB_URI...');
     const uri = process.env.MONGODB_URI;
     if (!uri) {
-        console.error('❌ MONGODB_URI is not defined in .env file');
+        console.error('❌ MONGODB_URI is not defined');
+        console.log('📋 Available environment variables:', Object.keys(process.env));
         process.exit(1);
     }
+    console.log('✅ MONGODB_URI found, connecting to MongoDB...');
     const client = new MongoClient(uri);
     try {
         await client.connect();
@@ -77,8 +80,13 @@ app.delete('/api/bookings/:id', async (req, res) => {
 });
 
 async function startServer() {
-    await connectDB();
-    app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+    try {
+        await connectDB();
+        app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+    } catch (error) {
+        console.error('❌ Failed to start server:', error.message);
+        process.exit(1);
+    }
 }
 
 startServer();
