@@ -13,23 +13,37 @@ let db;
 let bookingsCollection;
 
 async function connectDB() {
-console.log('🔍 Checking for MONGODB_URI...');
+    console.log('🔍 Checking for MONGODB_URI...');
     const uri = process.env.MONGODB_URI;
+    
     if (!uri) {
         console.error('❌ MONGODB_URI is not defined');
-        console.log('📋 Available environment variables:', Object.keys(process.env));
+        console.log('📋 Available env vars:', Object.keys(process.env));
         process.exit(1);
     }
-    console.log('✅ MONGODB_URI found, connecting to MongoDB...');
+    
+    console.log('✅ MONGODB_URI found (length:', uri.length, 'characters)');
+    console.log('🔗 First 50 chars:', uri.substring(0, 50) + '...');
+    console.log('🔄 Creating MongoDB client...');
+    
     const client = new MongoClient(uri);
+    
     try {
+        console.log('📡 Attempting to connect to MongoDB Atlas...');
         await client.connect();
         console.log('✅ Connected to MongoDB Atlas');
+        
+        console.log('📂 Selecting database: hostel_booking');
         db = client.db('hostel_booking');
+        
+        console.log('📂 Selecting collection: bookings');
         bookingsCollection = db.collection('bookings');
+        
+        console.log('✅ Database setup complete');
     } catch (error) {
-        console.error('❌ MongoDB connection error:', error);
-        process.exit(1);
+        console.error('❌ MongoDB connection error:', error.message);
+        console.error('📋 Full error object:', JSON.stringify(error, Object.getOwnPropertyNames(error)));
+        throw error;
     }
 }
 
@@ -80,11 +94,14 @@ app.delete('/api/bookings/:id', async (req, res) => {
 });
 
 async function startServer() {
+    console.log('🚀 Starting server...');
     try {
         await connectDB();
+        console.log(`💻 Attempting to listen on port ${PORT}...`);
         app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
     } catch (error) {
         console.error('❌ Failed to start server:', error.message);
+        console.error('📋 Full error:', error);
         process.exit(1);
     }
 }
