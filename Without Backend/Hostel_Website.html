@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Hostels Warsaw | Three Branches, One City</title>
+    <!-- Google Fonts + simple reset -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: #fefcf8;
+            color: #1e2a32;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 1.75rem 4rem;
+        }
+
+        /* header / logo area */
+        .header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #ffe6c7;
+            padding-bottom: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #c45c2c, #a13e16);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .badge {
+            background: #f5e6d8;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a13e16;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5e6c;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #c45c2c;
+        }
+
+        /* hero / welcome section (replaces search panel) */
+        .welcome-section {
+            background: linear-gradient(135deg, #fff5eb, #ffe6d4);
+            border-radius: 2rem;
+            padding: 2rem 2rem;
+            margin: 1rem 0 1.8rem;
+            text-align: center;
+            border: 1px solid #ffdec4;
+        }
+
+        .welcome-section h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2f3e46;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-section p {
+            font-size: 1.1rem;
+            color: #5e4b38;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .rating-stripe {
+            text-align: center;
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: #bc7a4a;
+            font-weight: 500;
+        }
+
+        .rating-stripe span {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        /* section title */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 3rem 0 1.8rem 0;
+            text-align: center;
+            color: #2f3e46;
+            letter-spacing: -0.3px;
+        }
+
+        /* card container */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        /* hostel card row */
+        .hostel-card {
+            background: white;
+            border-radius: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #f1e2d4;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .hostel-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-img {
+            flex: 0 0 160px;
+            background-size: cover;
+            background-position: center;
+            min-height: 160px;
+        }
+
+        .card-content {
+            flex: 1;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .card-info h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #2c3e2f;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            font-size: 0.85rem;
+            margin: 0.5rem 0 0.2rem;
+            color: #5a6e6f;
+        }
+
+        .stars {
+            color: #f4b942;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .vibe {
+            background: #f2e8e0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.7rem;
+        }
+
+        .price {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #2b5e3b;
+            margin-top: 6px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 0.7rem 1.4rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+        }
+
+        .btn-email {
+            background: #1e2a32;
+            color: white;
+        }
+
+        .btn-email:hover {
+            background: #c45c2c;
+            transform: scale(0.96);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1da15a;
+            transform: scale(0.96);
+        }
+
+        /* simple contact strip */
+        .contact-strip {
+            background: #faf3eb;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 2rem 0 1.5rem;
+        }
+        .contact-strip p {
+            font-size: 0.9rem;
+            color: #5c432f;
+        }
+        .contact-strip a {
+            color: #c45c2c;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .map-preview {
+            background: #eae3da;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b4c3a;
+            margin-top: 2rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.75rem;
+            border-top: 1px solid #f0e2d6;
+            padding-top: 2rem;
+            color: #8f6e55;
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                padding: 1rem;
+            }
+            .card-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .contact-buttons {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .card-img {
+                flex: 0 0 120px;
+                width: 100%;
+            }
+            .hostel-card {
+                flex-direction: column;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .welcome-section h1 {
+                font-size: 1.6rem;
+            }
+            .nav-links {
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- header with logo & simple nav (anchors to cards) -->
+    <div class="header">
+        <div class="logo-area">
+            <div class="logo">🏠 Hostels Warsaw</div>
+            <div class="badge">3 branches · local soul</div>
+        </div>
+        <div class="nav-links">
+            <a href="#oldtown">Old Town</a>
+            <a href="#citycenter">City Center</a>
+            <a href="#praga">Praga</a>
+            <a href="#contact-info">Contact</a>
+        </div>
+    </div>
+
+    <!-- Welcome section (no search / no booking) -->
+    <div class="welcome-section">
+        <h1>✨ Three homes. One Warsaw. ✨</h1>
+        <p>Party in Old Town • Work from City Center • Get creative in Praga</p>
+        <div class="rating-stripe">
+            ⭐ "Best hostel chain in Poland 2024" — HostelWorld Awards
+        </div>
+    </div>
+
+    <!-- OUR THREE HOMES section -->
+    <div class="section-title">🏡 pick your vibe & contact us directly 🏡</div>
+
+    <div class="cards-container">
+        <!-- OLD TOWN CARD -->
+        <div class="hostel-card" id="oldtown">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/f7e5d4/a85c2f?text=Old+Town+Vibes'); background-size: cover;"></div>
+            <div class="card-content">
+                <div class="card-info">
+                    <h3>🏰 OLD TOWN</h3>
+                    <div class="card-meta">
+                        <span class="stars">★ 8.9</span>
+                        <span class="vibe">🍻 PARTY HUB</span>
+                        <span class="vibe">🎯 24h reception</span>
+                    </div>
+                    <div class="price">from 45 zł / night</div>
+                    <div style="font-size:0.75rem; margin-top:6px;">🔥 rooftop bar · daily pub crawl · social terrace</div>
+                </div>
+                <div class="contact-buttons">
+                    <a href="mailto:hello@hostelswarsaw.com?subject=Booking%20Inquiry%20-%20Old%20Town%20branch&body=Hi%2C%20I%27m%20interested%20in%20booking%20Old%20Town%20branch.%0A%0AMy%20dates%3A%20%0ANumber%20of%20guests%3A%20%0AAny%20special%20requests%3F" class="contact-btn btn-email">📧 Email us</a>
+                    <a href="https://wa.me/48500123456?text=Hi%20Hostels%20Warsaw!%20I'd%20like%20to%20book%20the%20OLD%20TOWN%20branch.%20Please%20tell%20me%20about%20availability." target="_blank" class="contact-btn btn-whatsapp">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CITY CENTER CARD -->
+        <div class="hostel-card" id="citycenter">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/e8e0d8/2b6e4f?text=City+Center+Work'); background-size: cover;"></div>
+            <div class="card-content">
+                <div class="card-info">
+                    <h3>🏙️ CITY CENTER</h3>
+                    <div class="card-meta">
+                        <span class="stars">★ 9.2</span>
+                        <span class="vibe">💻 QUIET / WORK</span>
+                        <span class="vibe">⚡ 5G WiFi</span>
+                    </div>
+                    <div class="price">from 55 zł / night</div>
+                    <div style="font-size:0.75rem;">private pods · 24/7 cowork lounge · tea kitchen</div>
+                </div>
+                <div class="contact-buttons">
+                    <a href="mailto:hello@hostelswarsaw.com?subject=Booking%20Inquiry%20-%20City%20Center%20branch&body=Hi%2C%20I'm%20interested%20in%20the%20CITY%20CENTER%20branch.%0A%0ADates%3A%20%0AGuests%3A%20%0AThanks!" class="contact-btn btn-email">📧 Email us</a>
+                    <a href="https://wa.me/48500123456?text=Hi!%20I'd%20like%20to%20book%20CITY%20CENTER%20branch.%20Please%20share%20availability." target="_blank" class="contact-btn btn-whatsapp">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRAGA CARD -->
+        <div class="hostel-card" id="praga">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/e2cfb6/8b5a2b?text=Praga+Creative'); background-size: cover;"></div>
+            <div class="card-content">
+                <div class="card-info">
+                    <h3>🎨 PRAGA</h3>
+                    <div class="card-meta">
+                        <span class="stars">★ 8.7</span>
+                        <span class="vibe">🎧 CREATIVE</span>
+                        <span class="vibe">☕ vinyl records</span>
+                    </div>
+                    <div class="price">from 40 zł / night</div>
+                    <div style="font-size:0.75rem;">art studio · retro arcade · riverside location</div>
+                </div>
+                <div class="contact-buttons">
+                    <a href="mailto:hello@hostelswarsaw.com?subject=Booking%20Inquiry%20-%20Praga%20branch&body=Hi%2C%20I'm%20interested%20in%20the%20PRAGA%20creative%20branch.%0A%0APlease%20let%20me%20know%20prices%20and%20availability." class="contact-btn btn-email">📧 Email us</a>
+                    <a href="https://wa.me/48500123456?text=Hello!%20I'd%20love%20to%20stay%20at%20PRAGA%20branch.%20Tell%20me%20more%20about%20rooms%20%26%20availability." target="_blank" class="contact-btn btn-whatsapp">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact / info strip (direct contact without booking form) -->
+    <div id="contact-info" class="contact-strip">
+        <p>📞 <strong>Prefer to call or text?</strong> Reach us directly — we'll reply within hours.</p>
+        <p style="margin-top: 12px;">
+            📧 <a href="mailto:hello@hostelswarsaw.com">hello@hostelswarsaw.com</a> &nbsp;|&nbsp;
+            💬 <a href="https://wa.me/48500123456" target="_blank">WhatsApp: +48 500 123 456</a> &nbsp;|&nbsp;
+            📞 +48 22 123 45 67
+        </p>
+        <p style="font-size: 0.8rem; margin-top: 12px;">✅ No booking system — just real humans. Tell us your dates and we'll check availability.</p>
+    </div>
+
+    <!-- mini map preview (static but shows 3 locations) -->
+    <div class="map-preview">
+        📍 three branches in Warsaw &nbsp;&nbsp;|&nbsp;&nbsp;
+        🏛️ Old Town (party heart) &nbsp;|&nbsp;
+        🚆 City Center (central station area) &nbsp;|&nbsp;
+        🌉 Praga (Vistula riverside)
+        <div style="margin-top: 10px; font-weight:500;">📍 exact addresses shared upon inquiry — each just steps from trams & nightlife</div>
+    </div>
+
+    <footer>
+        © Hostels Warsaw • Three homes, one city • feel the local rhythm • contact: <a href="mailto:hello@hostelswarsaw.com" style="color: #c45c2c;">hello@hostelswarsaw.com</a>
+    </footer>
+</div>
+
+<script>
+    // (Optional tiny script: no booking logic — just smooth scroll for nav links)
+    document.querySelectorAll('.nav-links a, .contact-strip a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#') && href !== '#') {
+                const targetId = href.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+
+    // optional: prefill message with branch detection via URL param? not needed, but keep clean
+    console.log("Hostels Warsaw — direct contact only. No booking system.");
+</script>
+</body>
+</html>

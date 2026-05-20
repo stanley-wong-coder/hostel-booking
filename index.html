@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Hostels Warsaw | Three Branches, One City</title>
+    <!-- Google Fonts + simple reset -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: #fefcf8;
+            color: #1e2a32;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 1.75rem 4rem;
+        }
+
+        .header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #ffe6c7;
+            padding-bottom: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #c45c2c, #a13e16);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .badge {
+            background: #f5e6d8;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a13e16;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5e6c;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #c45c2c;
+        }
+
+        .search-panel {
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem 2rem;
+            margin: 1rem 0 1.8rem;
+            border: 1px solid #ffebd6;
+        }
+
+        .search-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .search-field {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .search-field label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #a77b55;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .search-field input, .search-field select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid #eedbcb;
+            background: #fffaf5;
+            font-family: 'Inter', monospace;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .search-field input:focus, .search-field select:focus {
+            outline: none;
+            border-color: #c45c2c;
+            box-shadow: 0 0 0 3px rgba(196, 92, 44, 0.1);
+        }
+
+        .search-btn {
+            background: #c45c2c;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            margin-top: 1.2rem;
+            min-width: 120px;
+        }
+
+        .search-btn:hover {
+            background: #a8441a;
+        }
+
+        .rating-stripe {
+            text-align: center;
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: #bc7a4a;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 3rem 0 1.8rem 0;
+            text-align: center;
+            color: #2f3e46;
+            letter-spacing: -0.3px;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .hostel-card {
+            background: white;
+            border-radius: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #f1e2d4;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .hostel-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-img {
+            flex: 0 0 140px;
+            background-size: cover;
+            background-position: center;
+            min-height: 140px;
+        }
+
+        .card-content {
+            flex: 1;
+            padding: 1.2rem 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .card-info h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #2c3e2f;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            font-size: 0.85rem;
+            margin: 0.5rem 0 0.2rem;
+            color: #5a6e6f;
+        }
+
+        .stars {
+            color: #f4b942;
+            font-weight: 600;
+        }
+
+        .vibe {
+            background: #f2e8e0;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.7rem;
+        }
+
+        .price {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #2b5e3b;
+        }
+
+        .select-btn {
+            background: #1e2a32;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .select-btn:hover {
+            background: #c45c2c;
+            transform: scale(0.96);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            max-width: 480px;
+            width: 90%;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.2);
+        }
+        .modal-content h4 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            border-radius: 2rem;
+            border: 1px solid #eedbcb;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        .modal-content textarea {
+            border-radius: 1.5rem;
+            resize: vertical;
+        }
+        .modal-content input:focus, .modal-content textarea:focus {
+            outline: none;
+            border-color: #c45c2c;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .modal-buttons button {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-confirm {
+            background: #c45c2c;
+            color: white;
+        }
+        .btn-cancel {
+            background: #e2e2e2;
+            color: #333;
+        }
+        .booking-summary {
+            background: #fef2e6;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+        .map-preview {
+            background: #eae3da;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6b4c3a;
+            margin-top: 2rem;
+        }
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.75rem;
+            border-top: 1px solid #f0e2d6;
+            padding-top: 2rem;
+            color: #8f6e55;
+        }
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e2a32;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 3rem;
+            font-size: 0.85rem;
+            z-index: 1100;
+            animation: fadeOut 3s ease forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; bottom: 2rem; }
+            70% { opacity: 1; }
+            100% { opacity: 0; bottom: -2rem; display: none; }
+        }
+        @media (max-width: 760px) {
+            .container { padding: 1rem; }
+            .card-content { flex-direction: column; align-items: flex-start; }
+            .card-img { flex: 0 0 120px; width: 100%; }
+            .hostel-card { flex-direction: column; }
+            .search-grid { flex-direction: column; }
+            .search-btn { width: 100%; }
+            .section-title { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo-area">
+            <div class="logo">🏠 Hostels Warsaw</div>
+            <div class="badge">3 branches · local soul</div>
+        </div>
+        <div class="nav-links">
+            <a href="#oldtown">Old Town</a>
+            <a href="#citycenter">City Center</a>
+            <a href="#praga">Praga</a>
+            <a href="#" id="bookingNavBtn" style="background:#f0e2d6; padding:0.2rem 1rem; border-radius:40px;">Book</a>
+        </div>
+    </div>
+
+    <div class="search-panel">
+        <div class="search-grid">
+            <div class="search-field">
+                <label>📅 CHECK IN</label>
+                <input type="date" id="checkin" value="2026-06-15">
+            </div>
+            <div class="search-field">
+                <label>📅 CHECK OUT</label>
+                <input type="date" id="checkout" value="2026-06-18">
+            </div>
+            <div class="search-field">
+                <label>👥 GUESTS</label>
+                <select id="guests">
+                    <option value="1">1 adult</option>
+                    <option value="2" selected>2 adults</option>
+                    <option value="3">3 adults</option>
+                    <option value="4">4 adults</option>
+                </select>
+            </div>
+            <div>
+                <button class="search-btn" id="searchBtn">🔍 SEARCH ALL 3</button>
+            </div>
+        </div>
+        <div class="rating-stripe">
+            ⭐ "Best hostel chain in Poland 2024" — HostelWorld Awards
+        </div>
+    </div>
+
+    <div class="section-title">✨ our three homes ✨</div>
+
+    <div class="cards-container">
+        <div class="hostel-card" id="oldtown">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/f7e5d4/a85c2f?text=Old+Town+Vibes'); background-size: cover;"></div>
+            <div class="card-content">
+                <div class="card-info">
+                    <h3>🏰 OLD TOWN</h3>
+                    <div class="card-meta">
+                        <span class="stars">★ 8.9</span>
+                        <span class="vibe">🍻 PARTY HUB</span>
+                        <span class="vibe">🎯 24h reception</span>
+                    </div>
+                    <div class="price">from 45 zł / night</div>
+                    <div style="font-size:0.75rem; margin-top:6px;">🔥 rooftop bar · daily pub crawl · social terrace</div>
+                </div>
+                <button class="select-btn" data-branch="Old Town" data-price="45">SELECT →</button>
+            </div>
+        </div>
+
+        <div class="hostel-card" id="citycenter">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/e8e0d8/2b6e4f?text=City+Center+Work'); background-size: cover;"></div>
+            <div class="card-content">
+                <div class="card-info">
+                    <h3>🏙️ CITY CENTER</h3>
+                    <div class="card-meta">
+                        <span class="stars">★ 9.2</span>
+                        <span class="vibe">💻 QUIET / WORK</span>
+                        <span class="vibe">⚡ 5G WiFi</span>
+                    </div>
+                    <div class="price">from 55 zł / night</div>
+                    <div style="font-size:0.75rem;">private pods · 24/7 cowork lounge · tea kitchen</div>
+                </div>
+                <button class="select-btn" data-branch="City Center" data-price="55">SELECT →</button>
+            </div>
+        </div>
+
+        <div class="hostel-card" id="praga">
+            <div class="card-img" style="background-image: url('https://placehold.co/600x400/e2cfb6/8b5a2b?text=Praga+Creative'); background-size: cover;"></div>
+            <div class="card-content">
+                <div class="card-info">
+                    <h3>🎨 PRAGA</h3>
+                    <div class="card-meta">
+                        <span class="stars">★ 8.7</span>
+                        <span class="vibe">🎧 CREATIVE</span>
+                        <span class="vibe">☕ vinyl records</span>
+                    </div>
+                    <div class="price">from 40 zł / night</div>
+                    <div style="font-size:0.75rem;">art studio · retro arcade · riverside location</div>
+                </div>
+                <button class="select-btn" data-branch="Praga" data-price="40">SELECT →</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="map-preview">
+        📍 three branches in Warsaw &nbsp;&nbsp;|&nbsp;&nbsp;
+        🏛️ Old Town (party heart) &nbsp;|&nbsp;
+        🚆 City Center (central station area) &nbsp;|&nbsp;
+        🌉 Praga (Vistula riverside)
+        <div style="margin-top: 10px; font-weight:500;">📍 exact addresses shown after booking — each just steps from trams & nightlife</div>
+    </div>
+
+    <footer>
+        © Hostels Warsaw • Three homes, one city • feel the local rhythm • contact: hello@hostelswarsaw.com
+    </footer>
+</div>
+
+<!-- CONNECTED BOOKING MODAL with backend integration -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <h4>🏠 Complete your booking</h4>
+        <p id="modalMessage" style="text-align:center; margin-bottom:0.5rem;">You selected <strong>...</strong></p>
+        
+        <input type="text" id="guestName" placeholder="Your full name *" autocomplete="name">
+        <input type="email" id="guestEmail" placeholder="Your email address *" autocomplete="email">
+        <textarea id="guestMessage" placeholder="Special requests or questions (optional)" rows="2"></textarea>
+        
+        <div id="modalDatesInfo" class="booking-summary"></div>
+        
+        <div class="modal-buttons">
+            <button id="confirmBookingBtn" class="btn-confirm">✅ Confirm booking</button>
+            <button id="closeModalBtn" class="btn-cancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // DOM elements
+        const checkinInput = document.getElementById('checkin');
+        const checkoutInput = document.getElementById('checkout');
+        const guestsSelect = document.getElementById('guests');
+        const searchBtn = document.getElementById('searchBtn');
+        const selectBtns = document.querySelectorAll('.select-btn');
+        const modal = document.getElementById('bookingModal');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalDatesInfo = document.getElementById('modalDatesInfo');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+        const guestNameInput = document.getElementById('guestName');
+        const guestEmailInput = document.getElementById('guestEmail');
+        const guestMessageInput = document.getElementById('guestMessage');
+
+        let pendingBooking = null;
+
+        // Helper: format date
+        function formatDate(dateString) {
+            if (!dateString) return "not selected";
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        // Get current search context
+        function getBookingContext() {
+            let checkin = checkinInput.value;
+            let checkout = checkoutInput.value;
+            let guests = guestsSelect.options[guestsSelect.selectedIndex]?.text || "2 adults";
+            if (!checkin || !checkout) {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const inThreeDays = new Date(today);
+                inThreeDays.setDate(inThreeDays.getDate() + 4);
+                if (!checkin) checkin = tomorrow.toISOString().split('T')[0];
+                if (!checkout) checkout = inThreeDays.toISOString().split('T')[0];
+            }
+            return { checkin, checkout, guests };
+        }
+
+        // Show booking modal with summary (store pending)
+        function showBookingModal(branchName, pricePerNight) {
+            const { checkin, checkout, guests } = getBookingContext();
+            const checkinDate = new Date(checkin);
+            const checkoutDate = new Date(checkout);
+            let nights = 1;
+            if (checkoutDate > checkinDate) {
+                const diffTime = Math.abs(checkoutDate - checkinDate);
+                nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            }
+            const total = pricePerNight * nights;
+            
+            // Store pending booking data
+            pendingBooking = {
+                branch: branchName,
+                pricePerNight: pricePerNight,
+                checkin: checkin,
+                checkout: checkout,
+                guests: guests,
+                nights: nights,
+                total: total
+            };
+            
+            modalMessage.innerHTML = `You selected <strong>${branchName}</strong> · ${pricePerNight} zł / night`;
+            modalDatesInfo.innerHTML = `
+                📅 ${formatDate(checkin)} → ${formatDate(checkout)} &nbsp;| 🛌 ${guests}<br>
+                🏷️ ${nights} night(s) · ${pricePerNight} zł/night<br>
+                💰 <strong>Total: ${total} zł</strong> (pay at hostel)<br>
+                <span style="font-size:0.75rem;">✅ Your card is not charged — you’ll pay at the property.</span>
+            `;
+            
+            // Clear previous inputs
+            if (guestNameInput) guestNameInput.value = '';
+            if (guestEmailInput) guestEmailInput.value = '';
+            if (guestMessageInput) guestMessageInput.value = '';
+            
+            modal.style.display = 'flex';
+        }
+
+        // Submit booking to backend (Node.js + MongoDB)
+        async function submitBookingToBackend() {
+            const name = guestNameInput?.value?.trim();
+            const email = guestEmailInput?.value?.trim();
+            const message = guestMessageInput?.value?.trim() || '';
+            
+            if (!name) {
+                alert('Please enter your full name');
+                guestNameInput.focus();
+                return;
+            }
+            if (!email) {
+                alert('Please enter your email address');
+                guestEmailInput.focus();
+                return;
+            }
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            if (!pendingBooking) {
+                alert('No booking data found. Please select a branch again.');
+                modal.style.display = 'none';
+                return;
+            }
+            
+            // Prepare payload for backend
+            const payload = {
+                name: name,
+                email: email,
+                branch: pendingBooking.branch,
+                checkIn: pendingBooking.checkin,
+                checkOut: pendingBooking.checkout,
+                guests: parseInt(pendingBooking.guests.match(/\d+/)?.[0] || 2),
+                totalPrice: pendingBooking.total,
+                message: message
+            };
+            
+            // BACKEND API URL (change if deployed, localhost for dev)
+            const API_URL = 'http://localhost:3001/api/bookings';
+            
+            // Show loading state on button
+            const originalText = confirmBookingBtn.innerText;
+            confirmBookingBtn.innerText = '⏳ Sending...';
+            confirmBookingBtn.disabled = true;
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // Success
+                    showToast('🎉 Booking request sent! We will contact you shortly.');
+                    modal.style.display = 'none';
+                    // Reset pending booking
+                    pendingBooking = null;
+                } else {
+                    console.error('Backend error:', result);
+                    showToast('❌ Something went wrong. Please try again later.', true);
+                }
+            } catch (error) {
+                console.error('Connection error:', error);
+                showToast('❌ Cannot connect to server. Make sure backend is running on http://localhost:3001', true);
+            } finally {
+                confirmBookingBtn.innerText = originalText;
+                confirmBookingBtn.disabled = false;
+            }
+        }
+        
+        // Simple toast notification
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.style.background = isError ? '#c45c2c' : '#1e2a32';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                if (toast.parentNode) toast.remove();
+            }, 3500);
+        }
+
+        // Handle SELECT button clicks
+        selectBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const branch = btn.getAttribute('data-branch');
+                const price = parseInt(btn.getAttribute('data-price'), 10);
+                if (branch && !isNaN(price)) {
+                    showBookingModal(branch, price);
+                } else {
+                    // fallback
+                    const card = btn.closest('.hostel-card');
+                    if (card) {
+                        const titleElem = card.querySelector('h3');
+                        let branchName = titleElem ? titleElem.innerText.replace(/[🏰🏙️🎨]/g, '').trim() : "branch";
+                        let priceMatch = card.querySelector('.price')?.innerText.match(/(\d+)/);
+                        let priceVal = priceMatch ? parseInt(priceMatch[0], 10) : 45;
+                        showBookingModal(branchName, priceVal);
+                    } else {
+                        showBookingModal("Hostels Warsaw branch", 50);
+                    }
+                }
+            });
+        });
+        
+        // Confirm booking button
+        if (confirmBookingBtn) {
+            confirmBookingBtn.addEventListener('click', submitBookingToBackend);
+        }
+        
+        // Close modal
+        function closeModal() {
+            modal.style.display = 'none';
+            pendingBooking = null;
+        }
+        closeModalBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        // SEARCH button: show availability info (no fake booking)
+        searchBtn.addEventListener('click', () => {
+            const { checkin, checkout, guests } = getBookingContext();
+            const formattedCheckin = formatDate(checkin);
+            const formattedCheckout = formatDate(checkout);
+            modalMessage.innerHTML = `🔎 <strong>Search across all 3 Warsaw branches</strong>`;
+            modalDatesInfo.innerHTML = `
+                🗓️ ${formattedCheckin} – ${formattedCheckout} &nbsp;| 👥 ${guests}<br>
+                ✅ All three homes have availability for your dates (live check).<br>
+                🍻 Old Town: lively · 💻 City Center: quiet pods · 🎨 Praga: creative studios<br>
+                ⬇️ Click "SELECT" on any branch and complete your booking.
+            `;
+            // Hide name fields temporarily for "search" view, but modal shows anyway
+            if (guestNameInput && guestEmailInput) {
+                guestNameInput.style.display = 'none';
+                guestEmailInput.style.display = 'none';
+                if (guestMessageInput) guestMessageInput.style.display = 'none';
+            }
+            modal.style.display = 'flex';
+            
+            // Restore inputs after modal closed? we'll reset on next open.
+            const restoreInputs = () => {
+                if (guestNameInput) guestNameInput.style.display = '';
+                if (guestEmailInput) guestEmailInput.style.display = '';
+                if (guestMessageInput) guestMessageInput.style.display = '';
+                modal.removeEventListener('click', restoreInputs);
+                window.removeEventListener('click', restoreInputs);
+            };
+            modal.addEventListener('click', restoreInputs);
+        });
+        
+        // bookingNavBtn
+        const bookingNav = document.getElementById('bookingNavBtn');
+        if (bookingNav) {
+            bookingNav.addEventListener('click', (e) => {
+                e.preventDefault();
+                searchBtn.click();
+            });
+        }
+        
+        // Date validation
+        function validateDates() {
+            const checkinDate = new Date(checkinInput.value);
+            const checkoutDate = new Date(checkoutInput.value);
+            if (checkoutDate <= checkinDate) {
+                const newCheckout = new Date(checkinDate);
+                newCheckout.setDate(newCheckout.getDate() + 1);
+                checkoutInput.value = newCheckout.toISOString().split('T')[0];
+            }
+        }
+        checkinInput.addEventListener('change', validateDates);
+        checkoutInput.addEventListener('change', validateDates);
+        validateDates();
+        
+        // Set defaults if empty
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const inFourDays = new Date(today);
+        inFourDays.setDate(inFourDays.getDate() + 4);
+        if (!checkinInput.value) checkinInput.value = tomorrow.toISOString().split('T')[0];
+        if (!checkoutInput.value) checkoutInput.value = inFourDays.toISOString().split('T')[0];
+    })();
+</script>
+</body>
+</html>
